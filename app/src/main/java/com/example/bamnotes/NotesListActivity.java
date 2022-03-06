@@ -54,18 +54,19 @@ public class NotesListActivity extends AppCompatActivity{
             ds.open();
             notes = ds.getNotes(sortBy, sortOrder);
             ds.close();
+
             if (notes.size() > 0) {
                 RecyclerView notesList = findViewById(R.id.rvNotes);
+                notesAdapter = new NotesAdapter(notes, this);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
                 notesList.setLayoutManager(layoutManager);
-                notesAdapter = new NotesAdapter(notes, this);
                 notesAdapter.setOnItemClickListener(onItemClickListener);
                 notesList.setAdapter(notesAdapter);
             }
-            else {
+             else {
                 Intent intent  = new Intent(NotesListActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
+                }
         } catch (Exception e) {
             Toast.makeText(this, "Error retrieving contacts", Toast.LENGTH_LONG).show();
         }

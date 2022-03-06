@@ -34,7 +34,6 @@ public class NotesAdapter extends RecyclerView.Adapter {
             textViewSubject = itemView.findViewById(R.id.textNoteSubject);
             textViewPriority = itemView.findViewById(R.id.textNotePriority);
             textViewDate = itemView.findViewById(R.id.textDate);
-
             deleteButton = itemView.findViewById(R.id.buttonDeleteNote);
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
@@ -88,8 +87,9 @@ public class NotesAdapter extends RecyclerView.Adapter {
                 holder.itemView.setBackgroundResource(R.color.green);
                 break;
         }
-        String s =  noteData.get(position).getDate() + "";
-        cvh.getTextViewDate().setText(s);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate= formatter.format(noteData.get(position).getDate());
+        cvh.getTextViewDate().setText(strDate);
 
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);

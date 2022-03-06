@@ -36,7 +36,7 @@ public class NotesDataSource {
             initialValues.put("priority", n.getPriority());
            //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             //String strDate= formatter.format(n.getDate());
-            //initialValues.put("date", String.valueOf(n.getDate().getTime()));
+            initialValues.put("date", String.valueOf(n.getDate().getTime()));
 
             didSucced = database.insert("notes", null, initialValues) > 0;
         }
