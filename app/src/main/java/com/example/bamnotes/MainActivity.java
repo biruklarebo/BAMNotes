@@ -224,11 +224,24 @@ public class MainActivity extends AppCompatActivity {
 
         editSubject.setText(currentNote.getNoteSubject());
         editNote.setText(currentNote.getNote());
-        if (currentNote.getPriority() == "High")
-            rbHigh.setChecked(true);
-        else if (currentNote.getPriority() == "Med")
-            rbMed.setChecked(true);
-        else if (currentNote.getPriority() == "Low")
-            rbLow.setChecked(true);
+
+        switch (currentNote.getPriority()){
+            case "High":
+                rbHigh.setChecked(true);
+                break;
+            case "Med":
+                rbMed.setChecked(true);
+                break;
+            default:
+                rbLow.setChecked(true);
+                break;
+        }
+
+        // if (currentNote.getPriority() == "High")
+        //    rbHigh.setChecked(true);
+        //else if (currentNote.getPriority() == "Med")
+        //    rbMed.setChecked(true);
+        //else if (currentNote.getPriority() == "Low")
+        //    rbLow.setChecked(true);
     }
 }
