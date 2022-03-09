@@ -132,12 +132,14 @@
                 style="@style/Widget.AppCompat.EditText"
                 android:layout_width="366dp"
                 android:layout_height="177dp"
+                android:gravity="top|left"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:background="#F1F0F0"
                 android:ems="16"
                 android:imeOptions="actionNext"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
+                android:lines="20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textAddress"></EditText>
 

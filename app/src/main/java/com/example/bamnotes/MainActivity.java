@@ -197,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
                 if (rbHigh.isChecked())
-                    currentNote.setPriority("1");
+                    currentNote.setPriority("3");
                 else if (rbMed.isChecked())
                     currentNote.setPriority("2");
                 else if (rbLow.isChecked())
-                    currentNote.setPriority("3");
+                    currentNote.setPriority("1");
             }
         });
     }
@@ -226,10 +226,10 @@ public class MainActivity extends AppCompatActivity {
         editNote.setText(currentNote.getNote());
 
         switch (currentNote.getPriority()){
-            case "High":
+            case "3":
                 rbHigh.setChecked(true);
                 break;
-            case "Med":
+            case "2":
                 rbMed.setChecked(true);
                 break;
             default:
