@@ -197,11 +197,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
                 if (rbHigh.isChecked())
-                    currentNote.setPriority("High");
+                    currentNote.setPriority("1");
                 else if (rbMed.isChecked())
-                    currentNote.setPriority("Med");
+                    currentNote.setPriority("2");
                 else if (rbLow.isChecked())
-                    currentNote.setPriority("Low");
+                    currentNote.setPriority("3");
             }
         });
     }

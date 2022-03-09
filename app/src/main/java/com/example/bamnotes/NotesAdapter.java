@@ -74,11 +74,11 @@ public class NotesAdapter extends RecyclerView.Adapter {
         NotesViewHolder cvh = (NotesViewHolder) holder;
         cvh.getNoteTextView().setText(noteData.get(position).getNoteSubject());
         switch((noteData.get(position).getPriority())){
-            case "High":
+            case "1":
                 cvh.getTextViewPriority().setText("High");
                 holder.itemView.setBackgroundResource(R.color.red);
                 break;
-            case "Med":
+            case "2":
                 cvh.getTextViewPriority().setText("Medium");
                 holder.itemView.setBackgroundResource(R.color.yellow);
                 break;
