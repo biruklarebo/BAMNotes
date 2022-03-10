@@ -2,6 +2,8 @@ package com.example.bamnotes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -95,31 +97,40 @@ public class MainActivity extends AppCompatActivity {
     }
     public void initSaveButton(){
         Button saveButton = findViewById(R.id.buttonSave);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        EditText textSubj = findViewById(R.id.editSubject);
+        RadioButton rbHigh = findViewById(R.id.radioHigh);
+        RadioButton rbMed = findViewById(R.id.radioMed);
+        RadioButton rbLow = findViewById(R.id.radioLow);
+        saveButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
                 boolean wasSuccessful;
                 NotesDataSource ds = new NotesDataSource(MainActivity.this);
-                try {
-                    ds.open();
-                    if (currentNote.getNoteID() == -1) {
-                        wasSuccessful = ds.insertNote(currentNote);
-                        if (wasSuccessful) {
-                            int newId = ds.getLastNoteID();
-                            currentNote.setNoteID(newId);
+                if ((textSubj.getText().toString().isEmpty()) || (!rbHigh.isChecked() && !rbMed.isChecked() && !rbLow.isChecked())) {
+                    Context context = MainActivity.this;
+                    new AlertDialog.Builder(context).setTitle("Error").setMessage("Please enter a priority and subject before saving").show();
+                    setForEditing(true);
+                } else {
+                    try {
+                        ds.open();
+                        if (currentNote.getNoteID() == -1) {
+                            wasSuccessful = ds.insertNote(currentNote);
+                            if (wasSuccessful) {
+                                int newId = ds.getLastNoteID();
+                                currentNote.setNoteID(newId);
+                            }
+                        } else {
+                            wasSuccessful = ds.updateNote(currentNote);
                         }
+                        ds.close();
+                    } catch (Exception e) {
+                        wasSuccessful = false;
                     }
-                    else {
-                        wasSuccessful = ds.updateNote(currentNote);
+                    if (wasSuccessful) {
+                        ToggleButton editToggle = findViewById(R.id.toggleButtonEdit);
+                        editToggle.toggle();
+                        setForEditing(false);
                     }
-                    ds.close();
-                } catch (Exception e) {
-                    wasSuccessful = false;
-                }
-                if (wasSuccessful) {
-                    ToggleButton editToggle = findViewById(R.id.toggleButtonEdit);
-                    editToggle.toggle();
-                    setForEditing(false);
                 }
             }
         });
